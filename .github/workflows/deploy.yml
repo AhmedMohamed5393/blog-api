@@ -30,6 +30,6 @@ jobs:
         run: echo "//railway.app/:_authToken=${{ secrets.RAILWAY_TOKEN }}" > ~/.npmrc
 
       - name: Deploy to Railway
-        run: railway up --project $RAILWAY_PROJECT_ID --token $RAILWAY_TOKEN
+        run: railway up -- --project $RAILWAY_PROJECT_ID --token $RAILWAY_TOKEN
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
