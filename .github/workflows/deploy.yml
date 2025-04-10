@@ -28,5 +28,5 @@ jobs:
 
       # ✅ Direct deploy using env vars
       - name: Deploy to Railway
-        run: railway up --service ${{ secrets.RAILWAY_SERVICE_ID }}
+        run: railway up --service ${{ secrets.RAILWAY_SERVICE_NAME }}
 
