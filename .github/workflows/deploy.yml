@@ -24,9 +24,6 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
-      - name: Run unit and e2e test cases
-        run: npm run test
-
       - name: Deploy to Railway
         run: railway up --service app
         env:

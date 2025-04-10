@@ -22,5 +22,8 @@ RUN npm run build
 # Expose the port your app runs on (change if needed)
 EXPOSE 80
 
+# To run all unit and e2e test cases
+RUN npm run test
+
 # Command to run your application
 CMD [ "npm", "run", "start:dev" ]

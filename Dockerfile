@@ -33,5 +33,8 @@ COPY --from=builder /app/package*.json ./
 # Optional: Add tini for signal handling (e.g., Docker/K8s)
 RUN apk add --no-cache tini
 
+# To run all unit and e2e test cases
+RUN npm run test
+
 ENV NODE_ENV=production
 CMD ["tini", "--", "node", "dist/src/main.js"]
