@@ -10,6 +10,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
+  ssl: { rejectUnauthorized: false },
   entities: ['dist/../**/*.entity.js'],
   synchronize: true,
   subscribers: [],
