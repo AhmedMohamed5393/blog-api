@@ -26,10 +26,16 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
-      - name: Authenticate with Railway CLI using token
-        run: echo "//railway.app/:_authToken=${{ secrets.RAILWAY_TOKEN }}" > ~/.npmrc
+      # Authenticate with Railway CLI using token
+      - name: Authenticate with Railway CLI
+        run: railway login --token ${{ secrets.RAILWAY_TOKEN }}
 
+      # Link the Railway project to the GitHub Action
+      - name: Link Railway Project
+        run: railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
+
+      # Deploy to Railway
       - name: Deploy to Railway
-        run: railway up -- --project $RAILWAY_PROJECT_ID --token $RAILWAY_TOKEN
+        run: railway up
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
