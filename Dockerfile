@@ -1,7 +1,7 @@
 # For production
 # Stage 1: Build the app
 # Use Node.js 22.14 as the base image
-FROM node:22.14
+FROM node:22.14 AS builder
 
 # Set the working directory
 WORKDIR /app
