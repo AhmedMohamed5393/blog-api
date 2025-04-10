@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
 
     steps:
       - name: Checkout Repo
@@ -26,7 +26,9 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
-      # Link Railway project without logging in
+      - name: Authenticate with Railway using token
+        run: echo "//railway.app/:_authToken=${{ secrets.RAILWAY_TOKEN }}" > ~/.npmrc
+
       - name: Link Railway Project
         run: railway link --project $RAILWAY_PROJECT_ID
 
