@@ -38,11 +38,11 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  app.useGlobalInterceptors( new LoggingInterceptor());
+  app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
   app.use('/public', express.static(join(__dirname, '..', 'public')));
 
-  await app.listen(process.env.PORT, '0.0.0.0');
+  await app.listen(process.env.DOCKER_PORT, '0.0.0.0');
 }
 
 bootstrap();
