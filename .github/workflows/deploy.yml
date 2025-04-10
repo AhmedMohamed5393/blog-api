@@ -25,6 +25,6 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Deploy to Railway
-        run: railway up -- --project dff75b41-2835-4cfb-88f1-e599183e9210 --service 65d48a70-af15-4f27-a57c-bf27c560e7fc
+        run: railway up -- --project ${{ secrets.RAILWAY_PROJECT_ID }} --service ${{ secrets.RAILWAY_SERVICE_ID }}
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
