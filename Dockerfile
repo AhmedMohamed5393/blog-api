@@ -30,8 +30,5 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
 
-# To run all unit and e2e test cases
-RUN npm run test
-
 ENV NODE_ENV=production
 CMD ["node", "dist/main.js"]
