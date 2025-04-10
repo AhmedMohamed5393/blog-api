@@ -26,12 +26,6 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
-      # Skip the login and directly link the Railway project
-      - name: Link Railway Project
-        run: railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
-
-      # Deploy to Railway
+      # ✅ Direct deploy using env vars
       - name: Deploy to Railway
         run: railway up
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
