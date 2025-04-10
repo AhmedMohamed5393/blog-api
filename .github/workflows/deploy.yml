@@ -25,6 +25,6 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Deploy to Railway
-        run: railway up --service app
+        run: railway up --service blog-api
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
