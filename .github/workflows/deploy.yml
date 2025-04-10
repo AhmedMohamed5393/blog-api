@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
@@ -29,9 +30,10 @@ jobs:
       - name: Railway Login
         run: railway login
 
-      # Link the Railway project
+      # Link the Railway project directly using the token
       - name: Link Railway project
-        run: railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
+        run: |
+          railway link --project $RAILWAY_PROJECT_ID
 
       # Deploy to Railway
       - name: Deploy to Railway
