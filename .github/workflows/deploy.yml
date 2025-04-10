@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
       - name: Checkout Repo
@@ -24,7 +25,14 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
+      # Log in to Railway using the token stored in GitHub secrets
+      - name: Railway Login
+        run: railway login --token ${{ secrets.RAILWAY_TOKEN }}
+
+      # Link the Railway project
+      - name: Link Railway project
+        run: railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
+
+      # Deploy to Railway
       - name: Deploy to Railway
-        run: railway up -- --project ${{ secrets.RAILWAY_PROJECT_ID }} --service ${{ secrets.RAILWAY_SERVICE_ID }}
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: railway up
