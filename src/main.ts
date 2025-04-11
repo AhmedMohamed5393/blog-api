@@ -43,7 +43,7 @@ async function bootstrap() {
   app.use('/public', express.static(join(__dirname, '..', 'public')));
 
   const port = process.env.PORT || 3000;
-  await app.listen(process.env.PORT || 3000, '0.0.0.0');
+  await app.listen(port, '0.0.0.0');
 
   Logger.log(`App is running on port ${port}`);
 }
