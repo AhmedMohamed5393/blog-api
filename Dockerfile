@@ -33,6 +33,6 @@ COPY --from=builder /app/dist ./dist
 ENV NODE_ENV=production
 
 # Using docker port
-EXPOSE 4000
+EXPOSE 3000
 
 CMD ["node", "dist/src/main.js"]
