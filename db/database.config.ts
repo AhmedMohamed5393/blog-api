@@ -3,15 +3,22 @@ import { config } from 'dotenv';
 
 config();
 
+const credentials = {};
+if (process.env.NODE_ENV !== 'production') {
+  credentials['host'] = process.env.DATABASE_HOST;
+  credentials['port'] = Number(process.env.DATABASE_PORT);
+  credentials['username'] = process.env.DATABASE_USER;
+  credentials['password'] = process.env.DATABASE_PASSWORD;
+  credentials['database'] = process.env.DATABASE_NAME;
+  credentials['ssl'] = false;
+} else {
+  credentials['url'] = process.env.DATABASE_URL;
+  credentials['ssl'] = { rejectUnauthorized: false };
+}
+
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
-  url: process.env.DATABASE_URL,
-  host: process.env.DATABASE_HOST,
-  port: Number(process.env.DATABASE_PORT),
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  ...credentials,
   entities: ['dist/../**/*.entity.js'],
   synchronize: true,
   subscribers: [],
