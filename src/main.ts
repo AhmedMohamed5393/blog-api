@@ -1,7 +1,7 @@
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { join } from 'path';
 import * as express from 'express';
@@ -42,7 +42,10 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.use('/public', express.static(join(__dirname, '..', 'public')));
 
+  const port = process.env.PORT || 3000;
   await app.listen(process.env.PORT || 3000, '0.0.0.0');
+
+  Logger.log(`App is running on port ${port}`);
 }
 
 bootstrap();
